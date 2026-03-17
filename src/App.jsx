@@ -59,7 +59,7 @@ function App() {
       </div>
 
       {/* Hero Battle Card */}
-      <div className={`w-full max-w-sm bg-slate-800 border-x-4 border-t-4 border-slate-700 rounded-t-3xl p-6 shadow-2xl relative z-10 min-h-[400px] flex flex-col justify-between transition-all duration-300 ${error ? 'border-red-900 shadow-red-900/10' : 'border-slate-700'}`}>
+      <div className={`w-full max-w-sm bg-slate-800 border-x-4 border-t-4 border-slate-700 rounded-t-3xl p-6 shadow-2xl relative z-10 min-h-[420px] flex flex-col justify-between transition-all duration-300 ${error ? 'border-red-900 shadow-red-900/10' : 'border-slate-700'}`}>
         
         {loading && (
           <div className="absolute top-4 right-4 animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full z-30"></div>
@@ -73,10 +73,10 @@ function App() {
                 {CLASS_TYPES[activeHero.classType].name}
               </h2>
             </div>
-            <div className="bg-blue-600 px-3 py-1 rounded text-xs font-black italic">LVL {level}</div>
+            <div className="bg-blue-600 px-3 py-1 rounded text-xs font-black italic shadow-lg">LVL {level}</div>
           </div>
 
-          <div className="h-40 flex flex-col items-center justify-center relative">
+          <div className="h-32 flex flex-col items-center justify-center relative">
             <div className={`text-8xl mb-4 transition-all duration-300 ${loading ? 'scale-110 blur-[1px]' : 'scale-100 blur-0'}`}>
               {getDisplayEmoji()}
             </div>
@@ -93,13 +93,34 @@ function App() {
           </div>
         </div>
 
-        {/* Stats Bars */}
-        <div className="space-y-4">
-          <div className="h-4 w-full bg-slate-950 rounded border border-slate-700 p-0.5 shadow-inner">
-            <div className="bg-red-600 h-full rounded-sm transition-all duration-1000 shadow-[0_0_10px_rgba(220,38,38,0.4)]" style={{ width: `${hp}%` }}></div>
+        {/* --- STATS SECTION MIT BESCHRIFTUNG --- */}
+        <div className="space-y-5 mt-4">
+          {/* Health Bar */}
+          <div>
+            <div className="flex justify-between items-end mb-1">
+              <span className="text-[10px] font-black uppercase tracking-widest text-red-500">Health (HP)</span>
+              <span className="text-[10px] font-bold text-slate-400">{Math.round(hp)} / 100</span>
+            </div>
+            <div className="h-5 w-full bg-slate-950 rounded border-2 border-slate-700 p-0.5 shadow-inner overflow-hidden">
+              <div 
+                className="bg-red-600 h-full rounded-sm transition-all duration-1000 shadow-[0_0_15px_rgba(220,38,38,0.5)]" 
+                style={{ width: `${hp}%` }}
+              ></div>
+            </div>
           </div>
-          <div className="h-2 w-full bg-slate-950 rounded-full overflow-hidden">
-            <div className="bg-blue-500 h-full transition-all duration-1000 shadow-[0_0_10px_rgba(59,130,246,0.4)]" style={{ width: `${xp}%` }}></div>
+
+          {/* Experience Bar */}
+          <div>
+            <div className="flex justify-between items-end mb-1">
+              <span className="text-[10px] font-black uppercase tracking-widest text-blue-400">Experience (XP)</span>
+              <span className="text-[10px] font-bold text-slate-400">{Math.round(xp)}%</span>
+            </div>
+            <div className="h-3 w-full bg-slate-950 rounded-full border border-slate-700 overflow-hidden shadow-inner">
+              <div 
+                className="bg-blue-500 h-full transition-all duration-1000 shadow-[0_0_10px_rgba(59,130,246,0.5)]" 
+                style={{ width: `${xp}%` }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -136,8 +157,8 @@ function App() {
 
       {/* Summoning Modal */}
       {isAdding && (
-        <div className="fixed inset-0 bg-slate-950/95 flex items-center justify-center z-50 p-6 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-slate-800 p-8 rounded-[2.5rem] border-2 border-blue-500 w-full max-w-xs shadow-2xl scale-in-95 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-slate-950/95 flex items-center justify-center z-50 p-6 backdrop-blur-md">
+          <div className="bg-slate-800 p-8 rounded-[2.5rem] border-2 border-blue-500 w-full max-w-xs shadow-2xl">
             <h3 className="text-xl font-black mb-6 text-center italic uppercase">Summon Hero</h3>
             <input 
               type="text" 
