@@ -1,0 +1,15 @@
+image: node:20-alpine
+
+# Definiert den Build-Prozess für GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - npm install
+    - npm run build
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
